@@ -1,0 +1,113 @@
+.tour {
+  max-width: 35rem;
+}
+.tour-img-box {
+  position: relative;
+  height: 20rem;
+}
+.tour-img-box > img,
+.tour-img-box::after {
+  width: 100%;
+  height: 100%;
+}
+.tour-img-box::after,
+.tour img {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.tour-img-box::after {
+  content: "";
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  background-image: var(--liner-gradient-img);
+  background-color: var(--color-primary);
+}
+.tour img {
+  object-fit: cover;
+}
+.tour-title {
+  position: absolute;
+  z-index: 100;
+  bottom: -3%;
+  right: 5%;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 2.4rem;
+  display: flex;
+  flex-direction: column;
+}
+.tour-title span {
+  display: inline-block;
+  align-self: flex-end;
+  opacity: 0.7;
+}
+.tour-title-top {
+  text-align: right;
+  padding: 1rem;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+}
+.tour-title-bottom {
+  transform: translateY(-5px);
+  padding: 1rem 2.4rem;
+  text-align: right;
+  background-image: linear-gradient(
+    to top left,
+    var(--color-secondary),
+    var(--color-primary)
+  );
+}
+.tour-details-box {
+  padding: 2.4rem 3rem;
+}
+.tour-details-box h3 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.tour-description {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-grey);
+}
+.tour-details {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1.2rem;
+  column-gap: 1.6rem;
+}
+.tour-details p {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.tour-details span {
+  color: var(--text-grey);
+  font-size: 1.2rem;
+}
+.tour-overview {
+  background-color: #f1f3f5;
+  border-top: 1px solid #e9ecef;
+  padding: 1.6rem 3rem 2.4rem 3rem;
+  justify-content: space-between;
+
+}
+.tour-overview span {
+  font-size: 1.4rem;
+}
+.tour-overview span {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+@media (max-width: 75em) {
+  .tour-overview {
+    padding: 0;
+  }
+}

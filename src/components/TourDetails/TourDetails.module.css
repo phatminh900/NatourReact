@@ -1,0 +1,63 @@
+.tour-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: var(--background-main);
+  max-width: 70%;
+  margin: 7.2rem auto 7.2rem auto;
+}
+.tour-details h2 {
+  margin-bottom: 2.4rem;
+}
+.tour-facts {
+  margin-bottom: 4.4rem;
+}
+.tour-facts > p {
+  gap: 1.2rem;
+}
+.fact-detail,
+.fact-title {
+  white-space: nowrap;
+}
+.fact-title {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.fact-detail,
+.tour-guide-name,
+.tour-about {
+  color: var(--text-grey);
+  font-style: italic;
+}
+
+/* Tour -guide */
+.tour-guide-box {
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+.tour-guide-box img {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+.tour-position {
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.tour-guide-name {
+  font-size: 1.2rem;
+}
+.tour-about {
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.2rem;
+}
+@media (max-width: 56.25em) {
+  .tour-details {
+    grid-template-columns: 1fr;
+  }
+}

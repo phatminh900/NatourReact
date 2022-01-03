@@ -1,0 +1,153 @@
+.checkout-box {
+  & h2 {
+    text-align: center;
+  }
+}
+.checkout {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  column-gap: 7.2rem;
+  border: 1px solid #ddd;
+  padding:2.4rem 0;
+}
+.cart,
+.cart > *:not(.price-quantity) {
+  display: flex;
+  align-items: center;
+}
+.cart {
+  flex-direction: column;
+  gap: 2.4rem;
+}
+.details-box {
+  gap: 1.2rem;
+  font-size: 2rem;
+  position: relative;
+
+  & .img-box {
+    position: relative;
+    width: 25%;
+    clip-path: var(--clip-path-img);
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: var(--liner-gradient-img);
+    }
+  }
+
+  & img {
+    width: 100%;
+
+    object-fit: cover;
+  }
+}
+.remove-item {
+  display: inline-block;
+  border: none;
+  background: none;
+  position: absolute;
+  font-size: 3rem;
+  cursor: pointer;
+  top: 0.5rem;
+  right: -4rem;
+  color: var(--color-tertiary);
+  transition: all 0.1s;
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+.type {
+  font-weight: 700;
+}
+.price-quantity {
+  margin-left: auto;
+  & > div {
+    align-items: center;
+    display: flex;
+  }
+
+  & p {
+    font-size: 2.4rem;
+  }
+}
+.tour-quantity {
+  padding: 0rem 2.4rem;
+  background-color: #ddd;
+}
+.price {
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.total-order {
+  border: 1px solid #aaa;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+
+  & p {
+    margin-bottom: 1.2rem;
+  }
+  & p span:first-child {
+    font-weight: 700;
+  }
+
+  & h3 {
+    font-size: 3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}
+.checkout-btn {
+  margin-top: 2rem;
+  border-radius: 3px;
+}
+.adjust-quantity-btn {
+  border: none;
+  background: none;
+  // font-size: 3.2rem;
+  cursor: pointer;
+  font-size: 3rem;
+  padding: 1.2rem;
+  transition: all 0.3s;
+  &:hover {
+    transform: translateY(-3px);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+
+// notification
+.notification{
+  text-align: center;
+  font-size: 3.2rem;
+  margin-top: 2.4rem;
+  color:var(--color-primary)
+}
+.disable{
+  cursor: not-allowed;
+  background-color: #ddd;
+  &:hover{
+    transform: translate(0);
+  }
+}
+
+@media (max-width: 37.25em) {
+  .checkout{
+    grid-template-columns: 1fr;
+    row-gap: 3.2rem;
+  }
+  .details-box{
+    padding:  0 3.2rem 0 0;
+  }
+  .remove-item {
+    top:-2.5rem;
+    right: 1rem;
+  }
+}

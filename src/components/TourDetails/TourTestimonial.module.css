@@ -1,0 +1,52 @@
+.tour-testimonial {
+  transform: skewY(-4deg) skewX(1deg);
+  padding: 12.8rem 4.4rem;
+  background-image: var(--liner-gradient-img);
+}
+
+.tour-wrapper {
+  transform: skewY(4deg) skewX(-1deg);
+  display: flex;
+  gap: 2.4rem;
+  overflow-x: scroll;
+}
+.tour-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.testimonial-box {
+  max-width: 40rem;
+  min-width: 25rem;
+  padding: 2.4rem;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+}
+.testimonial-box figure {
+  gap: 1.6rem;
+}
+.testimonial-box figure img {
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+}
+.testimonial-box p {
+  font-style: italic;
+  font-size: 1.4rem;
+  margin: 2.4rem 0 1.6rem 0;
+}
+.testimonial-rating-box {
+  margin-top: auto;
+  text-align: center;
+}
+.user {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+@media (max-width: 56.25em) {
+  .tour-testimonial {
+    transform: skewY(0) skewX(0);
+  }
+  .tour-wrapper {
+    transform: skewY(0) skewX(0);
+  }
+}

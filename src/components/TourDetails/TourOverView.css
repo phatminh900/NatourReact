@@ -1,0 +1,15 @@
+.tour-overview {
+  padding: 0;
+
+}
+.tour-overview > div:not(:first-child){
+  opacity: 0;
+
+  transition: opacity 0.2s;
+  
+}
+
+.tour-overview > div:not(:first-child).open{
+  opacity: 1;
+
+}

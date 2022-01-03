@@ -1,0 +1,16 @@
+.tour-img-box {
+  /* margin-top: 5.6rem; */
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  transform: skewY(-4deg) skewX(1deg);
+}
+.tour-img-box img {
+  width: 100%;
+}
+@media (max-width: 56.25em) {
+  .tour-img-box {
+    transform: skewY(0) skewX(0);
+  }
+}

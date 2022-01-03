@@ -1,0 +1,37 @@
+.footer{
+    justify-content: space-between;
+    font-size: 1.4rem;
+    color:var(--text-grey);
+    padding:5.6rem
+}
+.footer img{
+    height: 4.4rem;
+    filter: hue-rotate(90deg);
+}
+.details{
+    text-align: end;
+}
+.footer a{
+    text-decoration: none;
+    color:inherit;
+    margin-right: 1.6rem;
+}
+.footer a:hover{
+    color:var(--color-primary)
+}
+.footer a:last-of-type{
+    margin:0
+}
+@media (max-width: 37.25em) {
+    .footer{
+        font-size: 1.2rem;
+        padding: 3.2rem;
+    }
+    .footer img{
+        height: 2.4rem;
+    
+    }
+    .copyright{
+        margin-left: 1.2rem;
+    }
+}

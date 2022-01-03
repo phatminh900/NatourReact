@@ -1,0 +1,75 @@
+.header {
+  background-color: #343a40;
+  height: 9rem;
+  padding: 0 4.4rem;
+  text-transform: uppercase;
+  position: relative;
+  display: flex;
+}
+
+.logo {
+  height: 4.4rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+}
+.header button {
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+.btn-mobile svg {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+.menu,
+.close {
+  display: none;
+}
+.close {
+  position: fixed;
+  right: 10%;
+}
+// .close svg {
+//   color: var(--color-tertiary);
+// }
+.shopping-cart {
+  margin-left: auto;
+}
+// open nav
+@media (max-width: 37.5em) {
+  .header{
+    padding: 0 2.4rem
+  }
+  .menu {
+    display: block;
+  }
+  .logo {
+    position: relative;
+    height: 3.6rem;
+    left: 0;
+    transform: translate(0);
+    margin-left: 1rem;
+  }
+}
+
+.header.open-nav nav {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.header.open-nav .menu {
+  display: none;
+}
+.header.open-nav .close {
+  display: block;
+  z-index: 10000;
+}

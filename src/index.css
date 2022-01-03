@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap");
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+*::selection {
+  background-color: #63e6be;
+}
+:root {
+  --color-primary: #339af0;
+  --color-secondary: #63e6be;
+  --color-tertiary: #ff7730;
+  --text-color: #000;
+  --color-white: #fff;
+  --text-grey: #3a3939;
+  --background-main: #f6f6f6;
+  --background-input: #f1f1f1;
+  --border-radius-card: 8px;
+  --border-radius-btn: 100px;
+  --box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.11);
+  --clip-path-img: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  --liner-gradient-img: linear-gradient(
+    to right bottom,
+    rgba(51, 154, 240, 0.7),
+    rgba(34, 139, 230, 0.7)
+  );
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-family: "Nunito", sans-serif;
+}
+/* Layout */
+.grid-3-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 7.2rem;
+  column-gap: 4.4rem;
+}
+.container {
+  padding: 2.4rem;
+}
+main {
+  min-height: 45vh;
+}
+main {
+  padding: 7.2rem 9.6rem;
+}
+main,
+footer {
+  background-color: var(--background-main);
+}
+.btn {
+  display: inline-block;
+  transition: all 0.2s;
+  border-radius: var(--border-radius-btn);
+  text-decoration: none;
+  padding: 1.2rem 3.2rem;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-btn);
+  color: var(--text-color);
+  /* actual btn */
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1.6rem 5.6rem rgba(0, 0, 0, 0.15);
+}
+.flex-align-ct {
+  display: flex;
+  align-items: center;
+}
+.icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--color-primary);
+}
+
+/* form */
+.login-form-box {
+  max-width: 55rem;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.login-form-box > form {
+  padding: 4.4rem;
+}
+.heading-secondary {
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-primary),
+    var(--color-tertiary)
+  );
+  margin-bottom: 3.2rem;
+  text-transform: uppercase;
+}
+
+/* form */
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.confirm-password {
+  position: relative;
+  margin-top: -1.5rem;
+  margin-bottom: 1.6rem;
+  gap: 0.6rem;
+}
+.confirm-password.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Map */
+
+/* responsive */
+@media (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
+@media (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+  main {
+    padding: 4.4rem 5.6rem;
+  }
+  .grid-3-columns {
+    column-gap: 4.4rem;
+  }
+  .btn {
+    padding: 1.2rem 1.6rem;
+  }
+}
+@media (max-width: 61.57em) {
+  .grid-3-columns {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+}
+@media (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 37.25em) {
+  main {
+    padding: 3.2rem 1.6rem;
+  }
+  .grid-3-columns {
+    grid-template-columns: 1fr;
+  }
+  .grid-3-columns > div {
+    max-width: 90%;
+  }
+}

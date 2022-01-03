@@ -1,0 +1,123 @@
+.card {
+    max-width: 35rem;
+  }
+  .card-img-box {
+    position: relative;
+    height: 20rem;
+  }
+  .card-img-box > img,
+  .card-img-box::after {
+    width: 100%;
+    height: 100%;
+  }
+  .card-img-box::after,
+  .card img {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+  .card-img-box::after {
+    content: "";
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-image:var(--liner-gradient-img);
+    background-color: var(--color-primary);
+  }
+  .card img {
+    object-fit: cover;
+  }
+  .card-title {
+    position: absolute;
+    z-index: 100;
+    bottom: -3%;
+    right: 5%;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2.4rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title span {
+    display: inline-block;
+      align-self: flex-end;
+    opacity: 0.7;
+  
+  }
+  .card-title-top{
+      text-align: right;
+      padding: 1rem;
+      background-image: linear-gradient(to right bottom,var(--color-primary),var(--color-secondary));
+  }
+  .card-title-bottom{
+      transform: translateY(-5px);
+      padding:1rem 2.4rem;
+      text-align: right;
+      background-image: linear-gradient(to top left,var(--color-secondary),var(--color-primary));
+  }
+  .card-details-box {
+    padding: 2.4rem 3rem;
+  }
+  .card-details-box h3 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  .card-description {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-grey);
+  }
+  .card-details {
+    margin-top: 2.4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.2rem;
+    column-gap: 1.6rem;
+  }
+  .card-details p {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .card-details span {
+    color: var(--text-grey);
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .card-overview {
+    background-color: #f1f3f5;
+    border-top: 1px solid #e9ecef;
+    padding: 1.6rem 3rem 2.4rem 3rem;
+    justify-content: space-between;
+
+  }
+  .card-overview span {
+    font-size: 1.4rem;
+  }
+  .card-overview span {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+  
+
+  .product-price{
+    font-size: 2rem !important;
+}
+.product-description{
+  max-height: 7rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* @media (max-width: 75em) {
+  .card-overview {
+    /* padding: 0; 
+  }
+} */
+@media (max-width:37.25em){
+  .grid-3-columns{
+    grid-template-columns: 1fr;
+}
+}

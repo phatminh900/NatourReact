@@ -1,0 +1,4 @@
+.confirm-box > *{
+    color:var(--color-tertiary);
+    margin-bottom: 2.4rem;
+}

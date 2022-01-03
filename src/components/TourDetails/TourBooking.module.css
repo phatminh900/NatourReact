@@ -1,0 +1,28 @@
+.tour-booking-box {
+  padding: 9.6rem;
+}
+.tour-booking {
+  width: 60%;
+  text-align: center;
+  padding: 4.4rem;
+  margin: 0 auto;
+}
+.tour-booking p {
+  font-size: 2.4rem;
+  color: var(--color-primary);
+  margin-bottom: 3.2rem;
+}
+@media (max-width: 56.25em) {
+  .tour-booking {
+    width: 80%;
+  }
+}
+
+@media (max-width: 37.25em) {
+  .tour-booking-box {
+    padding: 1.2rem;
+  }
+  .tour-booking {
+    padding: 3.2rem;
+  }
+}

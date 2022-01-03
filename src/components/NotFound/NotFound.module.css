@@ -1,0 +1,15 @@
+.not-found-box{
+    
+    flex-direction: column;
+  
+}
+.not-found-box .waring{
+    color:var(--color-tertiary);
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 700;
+}
+.not-found-box p{
+    font-size: 2rem;
+    color:var(--text-grey)
+}

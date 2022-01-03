@@ -1,0 +1,28 @@
+.map {
+  width: 100%;
+  padding: 0;
+}
+.map-container {
+  height: 60vh;
+
+  transform: skewY(-4deg) skewX(0);
+  position: relative;
+}
+.location {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5.6rem;
+  height: 5.6rem;
+  display: block;
+}
+.location svg {
+  width: 4.4rem;
+  height: 4.4rem;
+}
+@media (max-width: 56.25em) {
+  .map-container {
+    transform: skewY(0) skewX(0);
+  }
+}

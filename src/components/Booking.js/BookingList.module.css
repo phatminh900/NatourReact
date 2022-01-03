@@ -1,0 +1,14 @@
+/* .booking-list{
+
+} */
+.heading,
+.product {
+  display: grid;
+  grid-template-columns: 6fr 2fr 2fr;
+}
+.heading {
+  margin-bottom: 1.2rem;
+}
+.booking-list span {
+  font-weight: 700;
+}
