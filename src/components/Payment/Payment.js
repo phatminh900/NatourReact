@@ -34,6 +34,7 @@ const Payment = ({ isAlreadyAdded, title, onCloseModalHandler, tour }) => {
   const payHandler = () => {
     if (!isLoggin) setShowRemindLogin(true);
     if (isLoggin) {
+      
       setIsLoading(true);
     }
   };

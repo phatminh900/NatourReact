@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SettingIcon from "../Icon/IdentificationIcon";
 import Card from "../UI/Card";
@@ -7,41 +7,33 @@ import BookingIcon from "../Icon/BookingIcon";
 import StartIcon from "../Icon/StarIcon";
 import Input from "../UI/Input";
 import useForm from "../../hooks/useForm";
-import ExclamationIcon from "../Icon/ExclamationIcon";
-import useCheckConfirmPass from "../../hooks/useCheckConfirmPass";
 import useHttp from "../../hooks/useHttp";
 import Notification from "../UI/Notification";
 import { useSelector } from "react-redux";
+import ExclamationIcon from "../Icon/ExclamationIcon";
 const User = () => {
   const { sendRequest, error, isLoading, isSuccess } = useHttp();
+  const [isPasswordMatch,setIsPasswordMatch]=useState(true)
   const currentUser = useSelector((state) => state.user);
-  console.log(currentUser);
-  const { isFormValidState, inputPasswordRef } =
-    useForm();
-  const {
-    isPasswordMatch,
-    setIsPasswordMatch,
-    inputConfirmPassword,
-    inputConfirmPasswordRef,
-  } = useCheckConfirmPass();
+
+  const inputConfirmPasswordRef = useRef();
+  const { isFormValidState, inputPasswordRef } = useForm();
   const changePasswordHandler = (e) => {
     e.preventDefault();
-
     const account = {
       idToken: currentUser.idToken,
       password: inputPasswordRef.current.value,
       returnSecureToken: true,
     };
-
-    if (account.password !== inputConfirmPassword) {
-      setIsPasswordMatch(false);
-      return;
+    if(currentUser.password !== account.password) {
+      setIsPasswordMatch(false)
+      return
     }
-    if (account.password === inputConfirmPassword) setIsPasswordMatch(true);
     sendRequest(
       "https://identitytoolkit.googleapis.com/v1/accounts:update",
       account
     );
+    setIsPasswordMatch(true)
   };
   return (
     <Card className={styles.user}>
@@ -85,23 +77,22 @@ const User = () => {
               label="Current password"
               input={{ type: "password", placeholder: "••••••••" }}
             />
+             <div
+          className={`confirm-password ${isPasswordMatch ? "hidden" : "open"} ${
+            styles["confirm-box"]
+          } ${isPasswordMatch ? "" : "open"} flex-align-ct`}
+        >
+          <ExclamationIcon />
+          <span>Please make sure you're entered correct current password.</span>
+        </div>
             <Input
-              isValid={inputConfirmPassword.length >= 6}
+              isValid={isFormValidState.isPasswordValid}
               ref={inputConfirmPasswordRef}
               id="new-password"
               label="New password"
               input={{ type: "password", placeholder: "••••••••" }}
             />
-            <div
-              className={` ${
-                isPasswordMatch ? "hidden" : "open"
-              } confirm-password ${
-                isPasswordMatch ? "" : "open"
-              } flex-align-ct`}
-            >
-              <ExclamationIcon />
-              <span>The entered password do not match.Let's try again.</span>
-            </div>
+
             <div className={styles.action}>
               <button className="btn">Change password</button>
             </div>

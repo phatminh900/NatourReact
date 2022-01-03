@@ -5,6 +5,7 @@ const initialUser = {
   email: "",
   name: "",
   isLoggin: false,
+  password:''
 };
 
 const userSlice = createSlice({
@@ -20,6 +21,7 @@ const userSlice = createSlice({
       state.idToken = action.payload.idToken;
       state.isLoggin = Boolean(state.idToken);
       state.email = action.payload.email;
+      state.password=action.payload.password
     },
     logout(state) {
       return initialUser;

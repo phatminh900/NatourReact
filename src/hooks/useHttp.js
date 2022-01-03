@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { API_KEY } from "../config/config";
 const useHttp = () => {
   const { pathname } = useLocation();
@@ -22,7 +22,6 @@ const useHttp = () => {
       if (!response.ok) {
         throw await response.json();
       }
-      console.log("not shown");
       const data = await response.json();
 
       setIsLoading(false);

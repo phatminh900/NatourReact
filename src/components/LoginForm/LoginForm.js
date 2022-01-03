@@ -9,7 +9,7 @@ import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
 import { userSliceActions } from "../../store/user-slice";
 const LoginForm = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const {
     dispatchIsFormValid,
     ACTIONS,
@@ -32,13 +32,19 @@ const LoginForm = () => {
       type: ACTIONS.passwordInput,
       value: account.password,
     });
-    (async ()=>{
-      const data=await sendRequest(
+    (async () => {
+      const data = await sendRequest(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword",
         account
       );
-      dispatch(userSliceActions.login({idToken:data.idToken,email:account.email}))
-    })()
+      dispatch(
+        userSliceActions.login({
+          idToken: data.idToken,
+          email: account.email,
+          password: account.password,
+        })
+      );
+    })();
   };
 
   return (

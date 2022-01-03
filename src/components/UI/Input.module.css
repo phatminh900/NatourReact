@@ -26,9 +26,18 @@
   flex-direction: column;
   gap: 0.8rem;
   margin-bottom: 2rem;
+  position: relative;
 }
 
 .form-row label {
   font-weight: 700;
   color: var(--text-grey);
+}
+.eye {
+  position: absolute;
+  background: none;
+  cursor: pointer;
+  border: none;
+  right: 5%;
+  top: 55%;
 }
