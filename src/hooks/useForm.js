@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useRef } from "react";
+import { useReducer, useRef } from "react";
 
 const ACTIONS = {
   emailInput: "EMAIL_INPUT",

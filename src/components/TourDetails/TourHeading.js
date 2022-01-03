@@ -6,7 +6,7 @@ import LocationIcon from '../Icon/LocationIcon'
 const TourHeading = ({title,tourId,location}) => {
     return (
         <div className={styles["tour-heading"]}>
-        <img src={require(`../img/tours/${tourId}.jpg`)} />
+        <img alt='tour-heading img' src={require(`../img/tours/${tourId}.jpg`)} />
         <div className={`${styles["tour-title"]} flex-align-ct`}>
           <span className={styles["tour-title-top"]}>
             {splitTitle(title, 0, 2)}
