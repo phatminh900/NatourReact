@@ -4,7 +4,13 @@ import SuccessBooking from "../SuccessBooking/SuccessBooking";
 import useBooking from "../../hooks/useBooking";
 import styles from "./CheckOut.module.scss";
 import Notification from "../UI/Notification";
+import { useDispatch, useSelector } from "react-redux";
+import { bookItem } from "../../store/user-slice";
 const TotalOrder = ({ productsPrice, toursPrice }) => {
+  const cart = useSelector((state) => state.cart);
+  const { products } = cart;
+  const { tours } = cart;
+  const dispatch=useDispatch()
   const {
     showRemindLogin,
     setShowRemindLogin,
@@ -15,13 +21,13 @@ const TotalOrder = ({ productsPrice, toursPrice }) => {
   } = useBooking(undefined);
 
   const totalPrice = toursPrice + productsPrice;
-  
   // const {isLoading,isSuccess}
   const checkoutHandler = () => {
     if (!isLogin) setShowRemindLogin(true);
 
     if (isLogin && totalPrice) {
       setIsLoading(true);
+      dispatch(bookItem([...tours,...products]))
     }
   };
   let content = (

@@ -11,6 +11,7 @@ const initialUser = {
   // name: "",
   isLogin: false,
   password: "",
+  booked: [],
 };
 
 const userSlice = createSlice({
@@ -26,6 +27,9 @@ const userSlice = createSlice({
     logout() {
       return initialUser;
     },
+    bookItem(state, action) {
+      state.booked.push(...action.payload);
+    },
   },
 });
 
@@ -34,6 +38,7 @@ export const userSliceActions = userSlice.actions;
 export const login = (user, expireTime) => {
   return (dispatch) => {
     dispatch(userSliceActions.login(user));
+
     localStorage.setItem(LOCAL_KEY_USER, JSON.stringify(user));
 
     //auto logout after 1h
@@ -52,11 +57,20 @@ export const logout = () => {
     clearTimeout(timer);
   };
 };
+export const bookItem = (items) => {
+  return (dispatch, getState) => {
+    const currentState = getState().user;
+    dispatch(userSliceActions.bookItem(items));
+    const updateBooked = { ...currentState, booked:[...currentState.booked,...items] };
+
+    localStorage.setItem(LOCAL_KEY_USER, JSON.stringify(updateBooked));
+  };
+};
 export const getPreviousUser = () => {
   return (dispatch) => {
     const user = JSON.parse(localStorage.getItem(LOCAL_KEY_USER));
-
     if (!user?.idToken) return;
+
     const expiresTime = +localStorage.getItem(LOCAL_KEY_EXPIRES_TIME);
     const remainTime = expiresTime - Date.now();
     // small than 1min log out
@@ -67,6 +81,8 @@ export const getPreviousUser = () => {
     }
 
     dispatch(userSliceActions.login(user));
+  
+    dispatch(userSliceActions.bookItem(user.booked))
     timer = setTimeout(() => {
       dispatch(logout());
     }, remainTime);

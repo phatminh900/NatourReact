@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import Modal from "../UI/Modal";
 import styles from "./Payment.module.css";
 import Logo from "../img/logo-white.jpg";
@@ -9,6 +9,7 @@ import Notification from "../UI/Notification";
 import Loading from "../Loading/Loading";
 import SuccessBooking from "../SuccessBooking/SuccessBooking";
 import useBooking from "../../hooks/useBooking";
+import { bookItem } from "../../store/user-slice";
 
 
 const Payment = ({ isAlreadyAdded, title, onCloseModalHandler, tour }) => {
@@ -22,28 +23,33 @@ const Payment = ({ isAlreadyAdded, title, onCloseModalHandler, tour }) => {
     isSuccess,
     setIsLoading,
   } = useBooking(tour.id);
+  const bookingTour = useMemo(
+    ()=>{
 
+      return{
+        id: tour.id,
+        title: tour.title,
+        price: tour.price,
+      }
+  },[tour.id,tour.title,tour.price]);
   const addTourToCartHandler = useCallback(() => {
-    const bookingTour = {
-      id: tour.id,
-      title: tour.title,
-      price: tour.price,
-    };
+   
     onCloseModalHandler();
     dispatch(cartSliceActions.addTourToCart(bookingTour));
+  
     setShowRemindLogin(false);
   }, [
-    tour.id,
-    tour.title,
-    tour.price,
+  
     dispatch,
     onCloseModalHandler,
     setShowRemindLogin,
+    bookingTour
   ]);
   const payHandler = () => {
     if (!isLogin) setShowRemindLogin(true);
     if (isLogin) {
       setIsLoading(true);
+      dispatch(bookItem([bookingTour]))
     }
   };
   let content = (
