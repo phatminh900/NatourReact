@@ -6,7 +6,7 @@
   list-style: none;
   justify-content: space-between;
 }
-.nav-list > div {
+.nav-list > li {
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -68,7 +68,7 @@
     z-index: 9999;
   }
   .nav-list,
-  .nav-list > div {
+  .nav-list > li {
     flex-direction: column;
   }
   .nav-list {

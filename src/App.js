@@ -1,22 +1,27 @@
+import React, { useEffect } from "react";
 import Header from "./components/Header/Header";
 import TourList from "./components/TourList/TourList";
-import { useEffect } from "react";
 import { toursSliceActions } from "./store/tours-slice";
 import { productsSliceActions } from "./store/products-slice";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "./components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
 import NotFound from "./components/NotFound/NotFound";
-import Signup from "./pages/Signup";
-import UserInfo from "./pages/UserInfo";
-import TourDetailsPage from "./pages/TourDetailsPage";
-import ProductsPage from "./pages/ProductsPage";
 import { getData } from "./helper/helper";
 
-import CheckOutPage from "./pages/CheckOutPage";
-
-import BookingsPage from "./pages/BookingsPage";
+import { getPreviousUser } from "./store/user-slice";
+import { LOCAL_KEY_CART } from "./config/config";
+import { cartSliceActions } from "./store/cart-slice";
+// Lazy loading
+import { Suspense } from "react";
+import Loading from "./components/Loading/Loading";
+const Login = React.lazy(() => import("./pages/Login"));
+const Signup = React.lazy(() => import("./pages/Signup"));
+const UserInfo = React.lazy(() => import("./pages/UserInfo"));
+const TourDetailsPage = React.lazy(() => import("./pages/TourDetailsPage"));
+const ProductsPage = React.lazy(() => import("./pages/ProductsPage"));
+const CheckOutPage = React.lazy(() => import("./pages/CheckOutPage"));
+const BookingsPage = React.lazy(() => import("./pages/BookingsPage"));
 
 // import productsli
 // const tours = [
@@ -169,6 +174,23 @@ function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
 
+  const cart = useSelector((state) => state.cart);
+  const { products } = cart;
+  const { tours } = cart;
+
+  // get cart from local
+  useEffect(() => {
+    const cartData = JSON.parse(localStorage.getItem(LOCAL_KEY_CART));
+    if (!cartData) return;
+    dispatch(cartSliceActions.getItemFromCart(cartData));
+  }, [dispatch]);
+
+  // set cart in local
+  useEffect(() => {
+    const cart = [...tours, ...products];
+
+    localStorage.setItem(LOCAL_KEY_CART, JSON.stringify(cart));
+  });
   useEffect(() => {
     (async () => {
       const tours = await getData("tours");
@@ -176,31 +198,35 @@ function App() {
       const products = await getData("products");
       dispatch(productsSliceActions.getProducts(products));
     })();
+    dispatch(getPreviousUser());
   }, [dispatch]);
+
   return (
-    <div className="container">
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<TourList />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/user-info"
-            element={currentUser?.idToken ? <UserInfo /> : <Login />}
-          />
-          <Route
-            path="bookings"
-            element={currentUser?.idToken ? <BookingsPage /> : <Login />}
-          />
-          <Route path="/tours/:tourTitle" element={<TourDetailsPage />} />
-          <Route path="/check-out" element={<CheckOutPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className="container">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<TourList />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/user-info"
+              element={currentUser?.idToken ? <UserInfo /> : <Login />}
+            />
+            <Route
+              path="bookings"
+              element={currentUser?.idToken ? <BookingsPage /> : <Login />}
+            />
+            <Route path="/tours/:tourTitle" element={<TourDetailsPage />} />
+            <Route path="/check-out" element={<CheckOutPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Suspense>
   );
 }
 

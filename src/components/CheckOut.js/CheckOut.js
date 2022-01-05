@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import styles from "./CheckOut.module.scss";
 import ProductItem from "./ProductItem";
 import TotalOrder from "./TotalOrder";
 import TourItem from "./TourItem";
+
 const CheckOut = () => {
   const cart = useSelector((state) => state.cart);
   const { products } = cart;
@@ -13,8 +14,6 @@ const CheckOut = () => {
     (total, product) => total + product.price * product.quantity,
     0
   );
-
-  // const totalPrice=[...products,...tours]
 
   const toursItem = tours.map((tour) => (
     <TourItem

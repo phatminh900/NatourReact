@@ -1,11 +1,13 @@
 import React, { useCallback } from "react";
 import Card from "../UI/Card";
-import { cartSliceActions } from "../../store/Cart-slice";
+import { cartSliceActions } from "../../store/cart-slice";
 import styles from "../utilitiesClassess/FullCard.module.css";
 import ProductFeatures from "./ProductFeatures";
 import { useDispatch } from "react-redux";
+
 const Product = ({ id, description, title, price, features }) => {
   const dispatch = useDispatch();
+
   const productFeatures = features.map((feature) => (
     <ProductFeatures key={Math.random()} content={feature} />
   ));
@@ -17,7 +19,7 @@ const Product = ({ id, description, title, price, features }) => {
       quantity: 1,
     };
     dispatch(cartSliceActions.addProductToCart(product));
-  }, [id, title, price,dispatch]);
+  }, [id, title, price, dispatch]);
   return (
     <Card className={styles["card"]}>
       <div className={styles["card-img-box"]}>

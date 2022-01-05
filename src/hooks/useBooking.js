@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { cartSliceActions } from "../store/Cart-slice";
+import { cartSliceActions } from "../store/cart-slice";
 import { useSelector } from "react-redux";
 import useOpenModal from "./useOpenModal";
 const useBooking = (id) => {
   const { setIsOpenModal } = useOpenModal();
   const [showRemindLogin, setShowRemindLogin] = useState(false);
-  const { isLoggin } = useSelector((state) => state.user);
+  const { isLogin } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -40,7 +40,7 @@ const useBooking = (id) => {
   return {
     showRemindLogin,
     setShowRemindLogin,
-    isLoggin,
+    isLogin,
     isLoading,
     isSuccess,
     setIsLoading,

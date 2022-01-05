@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialCart = {
   tours: [],
   products: [],
 };
-const checkExistItem = (list, action) => {
+export const checkExistItem = (list, action) => {
   return list.some((item) => item.id === action.payload.id);
 };
-const removeItem = (list, action) => {
+export const removeItem = (list, action) => {
   const productItemIdex = list.findIndex(
     (product) => product.id === action.payload.id
   );
+  // if(productItemIdex===-1) return
   list.splice(productItemIdex, 1);
 };
 const CartSlice = createSlice({
@@ -19,7 +19,7 @@ const CartSlice = createSlice({
   reducers: {
     addTourToCart(state, action) {
       const isAlreayHaveTour = checkExistItem(state.tours, action);
-      if (isAlreayHaveTour)  return state  ;
+      if (isAlreayHaveTour) return state;
       if (!isAlreayHaveTour) state.tours.push(action.payload);
     },
     addProductToCart(state, action) {
@@ -40,7 +40,6 @@ const CartSlice = createSlice({
       productItem.quantity = productItem.quantity + 1;
     },
     decreaseProductFromCart(state, action) {
-      console.log(action);
       const productItem = state.products.find(
         (product) => product.id === action.payload.id
       );
@@ -53,11 +52,23 @@ const CartSlice = createSlice({
     removeItemFromCart(state, action) {
       removeItem(state.products, action);
     },
-    removeAllItemFromCart(state, action) {
+    removeAllItemFromCart(state) {
       state.products.length = 0;
       state.tours.length = 0;
     },
+    getItemFromCart(state, action) {
+      const tours = action.payload.filter((tour) => tour.id.startsWith("t"));
+      const products = action.payload.filter((product) =>
+        product.id.startsWith("p")
+      );
+
+      state.products.push(...products);
+      state.tours.push(...tours);
+    },
   },
 });
+// add product to cart and store
+
 export const cartSliceActions = CartSlice.actions;
+
 export default CartSlice.reducer;

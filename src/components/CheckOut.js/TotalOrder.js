@@ -8,19 +8,19 @@ const TotalOrder = ({ productsPrice, toursPrice }) => {
   const {
     showRemindLogin,
     setShowRemindLogin,
-    isLoggin,
+    isLogin,
     isLoading,
     isSuccess,
     setIsLoading,
   } = useBooking(undefined);
 
   const totalPrice = toursPrice + productsPrice;
-
+  
   // const {isLoading,isSuccess}
   const checkoutHandler = () => {
-    if (!isLoggin) setShowRemindLogin(true);
+    if (!isLogin) setShowRemindLogin(true);
 
-    if (isLoggin && totalPrice) {
+    if (isLogin && totalPrice) {
       setIsLoading(true);
     }
   };

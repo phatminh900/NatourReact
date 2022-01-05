@@ -3,19 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserIcon from "../Icon/UserIcon";
 import styles from "./Navigation.module.css";
-import { userSliceActions } from "../../store/user-slice";
+import { logout } from "../../store/user-slice";
 
 const Navigation = ({ onCloseNavHandler }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
   const logoutHandler = () => {
-    dispatch(userSliceActions.logout());
+    dispatch(logout());
   };
   let navLink = (
     <>
-      <div>
-        <li>
-          {" "}
+      <li>
           <Link
             className={`${styles["nav-btn"]} btn`}
             to="/login"
@@ -23,8 +21,7 @@ const Navigation = ({ onCloseNavHandler }) => {
           >
             Log In
           </Link>
-        </li>
-        <li>
+
           <Link
             className={`${styles["nav-btn"]} ${styles["sign-up"]} btn`}
             to="/signup"
@@ -32,14 +29,14 @@ const Navigation = ({ onCloseNavHandler }) => {
           >
             Sign Up
           </Link>
-        </li>
-      </div>
+      
+      </li>
     </>
   );
-  if (currentUser.isLoggin) {
+  if (currentUser.isLogin) {
     navLink = (
       <>
-        <div>
+        <li>
           <li>
             <Link
               onClick={logoutHandler}
@@ -51,6 +48,7 @@ const Navigation = ({ onCloseNavHandler }) => {
           </li>
           <li>
             <Link
+            onClick={onCloseNavHandler}
               className={`${styles["nav-btn"]} ${styles["user"]} flex-align-ct btn`}
               to="/user-info"
             >
@@ -60,14 +58,14 @@ const Navigation = ({ onCloseNavHandler }) => {
               <span className={styles["user-name"]}>User</span>
             </Link>
           </li>
-        </div>
+        </li>
       </>
     );
   }
   return (
     <nav className={styles.navigation}>
       <ul className={`${styles["nav-list"]} flex-align-ct`}>
-        <div>
+        <li>
           <Link
             className={`${styles["header-link"]} btn`}
             to="/"
@@ -82,7 +80,7 @@ const Navigation = ({ onCloseNavHandler }) => {
           >
             Products
           </Link>
-        </div>
+        </li>
 
         {navLink}
       </ul>

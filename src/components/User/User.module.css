@@ -101,3 +101,19 @@
   color:var(--color-tertiary);
   margin-bottom: 2.4rem;
 }
+@media (max-width:56.25em){
+  .user {
+    grid-template-columns: 1fr;
+  }.activity {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  
+  }
+}
+@media (max-width:37.5em){
+  .link-box{
+    padding: 1.6rem 1.2rem;
+    white-space: nowrap;
+  }
+}

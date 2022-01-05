@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CheckOut.module.scss";
-import { cartSliceActions } from "../../store/Cart-slice";
+import { cartSliceActions } from "../../store/cart-slice";
 import { useDispatch } from "react-redux";
 
 const ProductItem = ({ title, id, price, quantity }) => {

@@ -3,12 +3,13 @@ import Modal from "../UI/Modal";
 import styles from "./Payment.module.css";
 import Logo from "../img/logo-white.jpg";
 import Card from "../UI/Card";
-import { cartSliceActions } from "../../store/Cart-slice";
+import { cartSliceActions } from "../../store/cart-slice";
 import { useDispatch } from "react-redux";
 import Notification from "../UI/Notification";
 import Loading from "../Loading/Loading";
 import SuccessBooking from "../SuccessBooking/SuccessBooking";
 import useBooking from "../../hooks/useBooking";
+
 
 const Payment = ({ isAlreadyAdded, title, onCloseModalHandler, tour }) => {
   const dispatch = useDispatch();
@@ -16,11 +17,12 @@ const Payment = ({ isAlreadyAdded, title, onCloseModalHandler, tour }) => {
   const {
     showRemindLogin,
     setShowRemindLogin,
-    isLoggin,
+    isLogin,
     isLoading,
     isSuccess,
     setIsLoading,
   } = useBooking(tour.id);
+
   const addTourToCartHandler = useCallback(() => {
     const bookingTour = {
       id: tour.id,
@@ -30,11 +32,17 @@ const Payment = ({ isAlreadyAdded, title, onCloseModalHandler, tour }) => {
     onCloseModalHandler();
     dispatch(cartSliceActions.addTourToCart(bookingTour));
     setShowRemindLogin(false);
-  }, [tour.id, tour.title, tour.price, dispatch, onCloseModalHandler,setShowRemindLogin]);
+  }, [
+    tour.id,
+    tour.title,
+    tour.price,
+    dispatch,
+    onCloseModalHandler,
+    setShowRemindLogin,
+  ]);
   const payHandler = () => {
-    if (!isLoggin) setShowRemindLogin(true);
-    if (isLoggin) {
-      
+    if (!isLogin) setShowRemindLogin(true);
+    if (isLogin) {
       setIsLoading(true);
     }
   };

@@ -57,7 +57,6 @@ import Product from "../Product/Product";
 
 const Products = () => {
   const { products } = useSelector((state) => state.products);
-  console.log(products);
   const toursItem = products.map((product) => (
     <Product
       key={product.id}

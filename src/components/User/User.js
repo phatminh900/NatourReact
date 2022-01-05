@@ -13,27 +13,26 @@ import { useSelector } from "react-redux";
 import ExclamationIcon from "../Icon/ExclamationIcon";
 const User = () => {
   const { sendRequest, error, isLoading, isSuccess } = useHttp();
-  const [isPasswordMatch,setIsPasswordMatch]=useState(true)
+  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
   const currentUser = useSelector((state) => state.user);
-
-  const inputConfirmPasswordRef = useRef();
+  const inputNewPasswordRef = useRef();
   const { isFormValidState, inputPasswordRef } = useForm();
   const changePasswordHandler = (e) => {
     e.preventDefault();
     const account = {
       idToken: currentUser.idToken,
-      password: inputPasswordRef.current.value,
+      password: inputNewPasswordRef.current.value,
       returnSecureToken: true,
     };
-    if(currentUser.password !== account.password) {
-      setIsPasswordMatch(false)
-      return
+    if (currentUser.password !== inputPasswordRef.current.value) {
+      setIsPasswordMatch(false);
+      return;
     }
     sendRequest(
       "https://identitytoolkit.googleapis.com/v1/accounts:update",
       account
     );
-    setIsPasswordMatch(true)
+    setIsPasswordMatch(true);
   };
   return (
     <Card className={styles.user}>
@@ -60,9 +59,9 @@ const User = () => {
       <div className={styles["about-box"]}>
         <div className={styles["about-user"]}>
           <form>
-            <h2 className="heading-secondary">Create your account!</h2>
+            {/* <h2 className="heading-secondary">Create your account!</h2>
             <p className={styles.name}>Name</p>
-            <div className={styles["name-box"]}>{currentUser.name}</div>
+            <div className={styles["name-box"]}>{currentUser.name}</div> */}
             <p className={styles.name}>Email Address</p>
             <div className={styles["name-box"]}>{currentUser.email}</div>
           </form>
@@ -77,17 +76,21 @@ const User = () => {
               label="Current password"
               input={{ type: "password", placeholder: "••••••••" }}
             />
-             <div
-          className={`confirm-password ${isPasswordMatch ? "hidden" : "open"} ${
-            styles["confirm-box"]
-          } ${isPasswordMatch ? "" : "open"} flex-align-ct`}
-        >
-          <ExclamationIcon />
-          <span>Please make sure you're entered correct current password.</span>
-        </div>
+            <div
+              className={`confirm-password ${
+                isPasswordMatch ? "hidden" : "open"
+              } ${styles["confirm-box"]} ${
+                isPasswordMatch ? "" : "open"
+              } flex-align-ct`}
+            >
+              <ExclamationIcon />
+              <span>
+                Please make sure you're entered correct current password.
+              </span>
+            </div>
             <Input
               isValid={isFormValidState.isPasswordValid}
-              ref={inputConfirmPasswordRef}
+              ref={inputNewPasswordRef}
               id="new-password"
               label="New password"
               input={{ type: "password", placeholder: "••••••••" }}

@@ -7,7 +7,7 @@ import styles from "./LoginForm.module.css";
 import { checkAllEntered } from "../../helper/helper";
 import Notification from "../UI/Notification";
 import { useDispatch } from "react-redux";
-import { userSliceActions } from "../../store/user-slice";
+import { login } from "../../store/user-slice";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const {
@@ -37,13 +37,13 @@ const LoginForm = () => {
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword",
         account
       );
-      dispatch(
-        userSliceActions.login({
-          idToken: data.idToken,
-          email: account.email,
-          password: account.password,
-        })
-      );
+      dispatch(login({
+        idToken: data.idToken,
+        email: account.email,
+        password: account.password,
+        cart:[]
+      },data.expiresIn))
+
     })();
   };
 
