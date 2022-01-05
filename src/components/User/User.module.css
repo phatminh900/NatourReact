@@ -22,8 +22,7 @@
   position: relative;
   cursor: pointer;
 }
-.link-box::before,
-.link-box::before {
+.link-box::before{
   content: "";
   position: absolute;
   height: 100%;
@@ -109,6 +108,9 @@
     justify-content: space-between;
     padding: 0;
   
+  }
+  .link-box::before{
+    display: none;
   }
 }
 @media (max-width:37.5em){

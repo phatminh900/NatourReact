@@ -14,22 +14,21 @@ const Navigation = ({ onCloseNavHandler }) => {
   let navLink = (
     <>
       <li>
-          <Link
-            className={`${styles["nav-btn"]} btn`}
-            to="/login"
-            onClick={onCloseNavHandler}
-          >
-            Log In
-          </Link>
+        <Link
+          className={`${styles["nav-btn"]} btn`}
+          to="/login"
+          onClick={onCloseNavHandler}
+        >
+          Log In
+        </Link>
 
-          <Link
-            className={`${styles["nav-btn"]} ${styles["sign-up"]} btn`}
-            to="/signup"
-            onClick={onCloseNavHandler}
-          >
-            Sign Up
-          </Link>
-      
+        <Link
+          className={`${styles["nav-btn"]} ${styles["sign-up"]} btn`}
+          to="/signup"
+          onClick={onCloseNavHandler}
+        >
+          Sign Up
+        </Link>
       </li>
     </>
   );
@@ -37,27 +36,24 @@ const Navigation = ({ onCloseNavHandler }) => {
     navLink = (
       <>
         <li>
-          <li>
-            <Link
-              onClick={logoutHandler}
-              className={`${styles["nav-btn"]} btn`}
-              to="/"
-            >
-              Log Out
-            </Link>
-          </li>
-          <li>
-            <Link
+          <Link
+            onClick={logoutHandler}
+            className={`${styles["nav-btn"]} btn`}
+            to="/"
+          >
+            Log Out
+          </Link>
+
+          <Link
             onClick={onCloseNavHandler}
-              className={`${styles["nav-btn"]} ${styles["user"]} flex-align-ct btn`}
-              to="/user-info"
-            >
-              {/* <div className={styles['user-img-box']}> */}
-              <UserIcon />
-              {/* </div> */}
-              <span className={styles["user-name"]}>User</span>
-            </Link>
-          </li>
+            className={`${styles["nav-btn"]} ${styles["user"]} flex-align-ct btn`}
+            to="/user-info"
+          >
+            {/* <div className={styles['user-img-box']}> */}
+            <UserIcon />
+            {/* </div> */}
+            <span className={styles["user-name"]}>User</span>
+          </Link>
         </li>
       </>
     );

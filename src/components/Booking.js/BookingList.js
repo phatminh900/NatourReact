@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux'
 import styles from './BookingList.module.css'
 const BookingList = () => {
     const {cart}=useSelector(state=>state)
-
+    if(!cart.length) return   <p className={styles["notification"]}>
+    You have not booked any items yet.
+  </p>
     const totalPriceProducts=cart.products.reduce((total,product)=>total+(product.quantity*product.price),0)
     const totalPriceTours=cart.tours.reduce((total,product)=>total+product.price,0)
 

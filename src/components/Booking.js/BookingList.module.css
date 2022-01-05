@@ -12,3 +12,9 @@
 .booking-list span {
   font-weight: 700;
 }
+.notification {
+  text-align: center;
+  font-size: 3.2rem;
+  margin-top: 2.4rem;
+  color: var(--color-primary);
+}

@@ -69,7 +69,7 @@ export const getPreviousUser = () => {
     dispatch(userSliceActions.login(user));
     timer = setTimeout(() => {
       dispatch(logout());
-    }, 6000);
+    }, remainTime);
   };
 };
 export default userSlice.reducer;
