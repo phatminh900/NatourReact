@@ -6,7 +6,7 @@ const splitTitle = (title, start, end) => {
 };
 const getData = async (type,action) => {
   const response = await fetch(
-    `https://tours-5d066-default-rtdb.asia-southeast1.firebasedatabase.app/${type}.json`
+    `https://natour-fadc1-default-rtdb.asia-southeast1.firebasedatabase.app/${type}.json`
   );
   const data = await response.json();
 
